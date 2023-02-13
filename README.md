@@ -29,7 +29,7 @@ See a sample of the response data:
 
 **Calculate and get precision**
 This will return a `application/json` content type.
-- `http://localhost:8080/spamDetector-1.0/api/spam/accuracy`
+- `http://localhost:8080/spamDetector-1.0/api/spam/precision`
 See a sample of the response data:
 ```
 {"val": 0.56484}
@@ -38,7 +38,8 @@ See a sample of the response data:
 
 Most of your programming will be in the `SpamDetector` class. This class will be responsible for reading the testing and training data files, training, and tesing the model.
 
-> Feel free to create other helper classes as you see fit.
+> Obs1. Feel free to create other helper classes as you see fit.
+> Obs2. You are not expected to get the exact same values as the ones shown in the samples.
 
 ### References 
 [1] https://en.wikipedia.org/wiki/Bag-of-words_model 
