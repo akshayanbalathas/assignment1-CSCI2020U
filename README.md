@@ -39,6 +39,7 @@ See a sample of the response data:
 Most of your programming will be in the `SpamDetector` class. This class will be responsible for reading the testing and training data files, training, and tesing the model.
 
 > Obs1. Feel free to create other helper classes as you see fit.
+> 
 > Obs2. You are not expected to get the exact same values as the ones shown in the samples.
 
 ### References 
