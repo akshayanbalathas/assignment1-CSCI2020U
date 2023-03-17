@@ -14,51 +14,48 @@ import jakarta.ws.rs.core.Response;
 @Path("/spam")
 public class SpamResource {
 
-//    your SpamDetector Class responsible for all the SpamDetecting logic
+    // your SpamDetector Class responsible for all the SpamDetecting logic
     SpamDetector detector = new SpamDetector();
 
-
     SpamResource(){
-//        TODO: load resources, train and test to improve performance on the endpoint calls
+        // load resources, train and test to improve performance on the endpoint calls
         System.out.print("Training and testing the model, please wait");
-
-//      TODO: call  this.trainAndTest();
-
-
+        this.trainAndTest();
     }
+
     @GET
     @Produces("application/json")
     public Response getSpamResults() {
-//       TODO: return the test results list of TestFile, return in a Response object
-
-        return null;
+        // return the test results list of TestFile, return in a Response object
+        List<TestFile> testResults = detector.getTestResults();
+        return Response.ok(testResults).build();
     }
 
     @GET
     @Path("/accuracy")
     @Produces("application/json")
     public Response getAccuracy() {
-//      TODO: return the accuracy of the detector, return in a Response object
-
-        return null;
+        // return the accuracy of the detector, return in a Response object
+        double accuracy = detector.getAccuracy();
+        return Response.ok("{\"val\": " + accuracy + "}").build();
     }
 
     @GET
     @Path("/precision")
     @Produces("application/json")
     public Response getPrecision() {
-       //      TODO: return the precision of the detector, return in a Response object
-
-        return null;
+        // return the precision of the detector, return in a Response object
+        double precision = detector.getPrecision();
+        return Response.ok("{\"val\": " + precision + "}").build();
     }
 
-    private List<TestFile> trainAndTest()  {
+    private void trainAndTest() {
         if (this.detector==null){
             this.detector = new SpamDetector();
         }
-
-//        TODO: load the main directory "data" here from the Resources folder
-        File mainDirectory = null;
-        return this.detector.trainAndTest(mainDirectory);
+        // load the main directory "data" here from the Resources folder
+        ClassLoader classLoader = getClass().getClassLoader();
+        File mainDirectory = new File(classLoader.getResource("resources/data").getFile());
+        this.detector.trainAndTest(mainDirectory);
     }
 }
